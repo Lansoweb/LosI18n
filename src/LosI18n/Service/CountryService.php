@@ -1,7 +1,7 @@
 <?php
 namespace LosI18n\Service;
 
-final class LanguageService
+final class CountryService
 {
     private $translatedTo;
 
@@ -31,12 +31,12 @@ final class LanguageService
         return $this;
     }
 
-    public function getAllLanguages($translatedTo = null)
+    public function getAllCountries($translatedTo = null)
     {
         if (null === $translatedTo) {
             $translatedTo = $this->translatedTo;
         }
-        $fileName = $this->path.'/'.$translatedTo.'/languages.php';
+        $fileName = $this->path.'/'.$translatedTo.'/countries.php';
         if (! file_exists($fileName)) {
             throw new \InvalidArgumentException("Language $translatedTo not found.");
         }
@@ -44,12 +44,12 @@ final class LanguageService
         return include $fileName;
     }
 
-    public function getLanguage($language, $translatedTo = null)
+    public function getCountry($country, $translatedTo = null)
     {
         if (null === $translatedTo) {
             $translatedTo = $this->translatedTo;
         }
-        $fileName = $this->path.'/'.$translatedTo.'/languages.php';
+        $fileName = $this->path.'/'.$translatedTo.'/countries.php';
         if (! file_exists($fileName)) {
             throw new \InvalidArgumentException("Language $translatedTo not found.");
         }
@@ -58,10 +58,11 @@ final class LanguageService
         if (!is_array($list)) {
             throw new \InvalidArgumentException("Language $translatedTo not found.");
         }
-        if (!array_key_exists($language, $list)) {
-            throw new \InvalidArgumentException("Language $language not found for $translatedTo.");
+        $country = strtoupper($country);
+        if (!array_key_exists($country, $list)) {
+            throw new \InvalidArgumentException("Country $country not found for $translatedTo.");
         }
 
-        return $list[$language];
+        return $list[$country];
     }
 }

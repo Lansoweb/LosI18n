@@ -89,7 +89,7 @@ final class BuilderService
         foreach ($vet as $l) {
             $attrs = $l->attributes();
             $code = $attrs->type->__toString();
-            if (strlen($code) === 2) {
+            if (strlen($code) === 2 || strlen($code) === 5) {
                 $langs[$code] = $l->__toString();
             }
         }

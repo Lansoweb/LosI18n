@@ -9,8 +9,10 @@ return [
     'service_manager' => [
         'factories' => [
             'LosI18n\Service\LanguageService' => 'LosI18n\Service\LanguageServiceFactory',
+            'LosI18n\Service\CountryService' => 'LosI18n\Service\CountryServiceFactory',
             'LosI18n\Service\BuilderService' => 'LosI18n\Service\BuilderServiceFactory',
             'losi18n-languages' => 'LosI18n\Service\LanguageServiceFactory',
+            'losi18n-countries' => 'LosI18n\Service\CountryServiceFactory',
             'losi18n-builder' => 'LosI18n\Service\BuilderServiceFactory',
         ],
     ],
