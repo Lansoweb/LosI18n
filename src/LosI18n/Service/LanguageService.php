@@ -44,6 +44,16 @@ final class LanguageService
         return include $fileName;
     }
 
+    public function getNativeLanguages()
+    {
+        $fileName = $this->path.'/natives/languages.php';
+        if (! file_exists($fileName)) {
+            throw new \InvalidArgumentException("Native language file not found.");
+        }
+
+        return include $fileName;
+    }
+
     public function getLanguage($language, $translatedTo = null)
     {
         if (null === $translatedTo) {
