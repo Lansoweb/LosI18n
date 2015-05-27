@@ -21,25 +21,34 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface, Co
 
     public function getAutoloaderConfig()
     {
-        return array(
-            'Zend\Loader\StandardAutoloader' => array(
-                'namespaces' => array(
+        return [
+            'Zend\Loader\StandardAutoloader' => [
+                'namespaces' => [
                     __NAMESPACE__ => __DIR__.'/../../src/'.__NAMESPACE__,
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
     }
 
     public function getConsoleUsage(Console $console)
     {
-        return array(
-            'losi18n build [--verbose|-v] <source> <destination> [<format>] [<language>]'    => 'Build the i18n files',
+        return [
+            'losi18n download <destination> [<language>] [<format>]'    => 'Download the i18n files',
 
-            array( 'source',        'Path to CLRD files.' ),
-            array( 'destination',   'Path where the module will save the files.' ),
-            array( 'format',        'Format of the files to be saved.' ),
-            array( 'language',      'Language to be used. Ommit will generate for ALL languages.' ),
-            array( '--verbose|-v',  '(optional) turn on verbose mode'        ),
-        );
+            [ 'destination',   'Path where the module will save the files.' ],
+            [ 'language',      'Language to be downloaded. Can specify multiple languages separated by a comma (,)' ],
+            [ 'format',        'Format of the files to be downloaded. Can specify multiple formats separated by a comma (,)' ],
+            [ '--verbose|-v',  '(optional) turn on verbose mode'        ],
+
+            'losi18n build [--verbose|-v] <source> <destination> [<language>] [<format>]'    => 'Build the i18n files',
+
+            [ 'source',        'Path to CLRD files.' ],
+            [ 'destination',   'Path where the module will save the files.' ],
+            [ 'language',      'Language to be used. Ommit will generate for ALL languages.' ],
+            [ 'format',        'Format of the files to be saved.' ],
+            [ '--verbose|-v',  '(optional) turn on verbose mode'        ],
+
+            "Available formats: csv, json and php.\n",
+        ];
     }
 }

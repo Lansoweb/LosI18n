@@ -5,6 +5,8 @@ final class LanguageService
 {
     private $language;
 
+    private $path = 'vendor/los/losi18n-data/data';
+
     public function getLanguage()
     {
         return $this->language;
@@ -17,16 +19,26 @@ final class LanguageService
         return $this;
     }
 
+    public function getPath()
+    {
+        return $this->path;
+    }
+
+    public function setPath($path)
+    {
+        $this->path = (string) $path;
+
+        return $this;
+    }
+
     public function getAllLanguages($language = null)
     {
-        if (null !== $language) {
-            $this->setLanguage($language);
-        } else {
+        if (null === $language) {
             $language = $this->language;
         }
-        $fileName = 'vendor/los/losi18n-data/data/'.$language.'/country.php';
-        if (!file_exists($fileName)) {
-            throw new \InvalidArgumentException("Língua $language não encontrada.");
+        $fileName = $this->path.'/'.$language.'/languages.php';
+        if (! file_exists($fileName)) {
+            throw new \InvalidArgumentException("Language $language not found.");
         }
 
         return include $fileName;

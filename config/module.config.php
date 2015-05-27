@@ -1,25 +1,25 @@
 <?php
-return array(
-    'controllers' => array(
-        'invokables' => array(
+return [
+    'controllers' => [
+        'invokables' => [
             'LosI18n\Controller\Index' => 'LosI18n\Controller\IndexController',
             'LosI18n\Controller\Console' => 'LosI18n\Controller\ConsoleController',
-        ),
-    ),
-    'service_manager' => array(
-        'factories' => array(
+        ],
+    ],
+    'service_manager' => [
+        'factories' => [
             'LosI18n\Service\LanguageService' => 'LosI18n\Service\LanguageServiceFactory',
             'LosI18n\Service\BuilderService' => 'LosI18n\Service\BuilderServiceFactory',
             'losi18n-languages' => 'LosI18n\Service\LanguageServiceFactory',
             'losi18n-builder' => 'LosI18n\Service\BuilderServiceFactory',
-        ),
-    ),
+        ],
+    ],
     'console' => [
         'router' => [
             'routes' => [
                 'losi18n-build' => [
                     'options' => [
-                        'route' => 'losi18n build <source> <destination> [<format>] [<language>]',
+                        'route' => 'losi18n build <source> <destination> [<language>] [<format>] ',
                         'defaults' => [
                             '__NAMESPACE__' => 'LosI18n\Controller',
                             'controller' => 'Console',
@@ -27,52 +27,62 @@ return array(
                         ],
                     ],
                 ],
+                'losi18n-download' => [
+                    'options' => [
+                        'route' => 'losi18n download <destination> <language> [<format>]',
+                        'defaults' => [
+                            '__NAMESPACE__' => 'LosI18n\Controller',
+                            'controller' => 'Console',
+                            'action' => 'download',
+                        ],
+                    ],
+                ],
             ],
         ],
     ],
-    'router' => array(
-        'routes' => array(
-            'zfcadmin' => array(
-                'child_routes' => array(
-                    'los-i18n' => array(
+    'router' => [
+        'routes' => [
+            'zfcadmin' => [
+                'child_routes' => [
+                    'los-i18n' => [
                         'type' => 'Segment',
-                        'options' => array(
+                        'options' => [
                             'route' => '[/:lang]',
-                            'constraints' => array(
+                            'constraints' => [
                                 'lang' => '[a-z]{2}_[A-Z]{2}',
-                            ),
-                            'defaults' => array(
+                            ],
+                            'defaults' => [
                                 '__NAMESPACE__' => 'LosI18n\Controller',
                                 'controller' => 'Index',
                                 'action' => 'index',
                                 'lang' => 'pt_BR',
-                            ),
-                        ),
+                            ],
+                        ],
                         'may_terminate' => true,
-                    ),
-                ),
-            ),
-            'los-i18n' => array(
+                    ],
+                ],
+            ],
+            'los-i18n' => [
                 'type' => 'Segment',
-                'options' => array(
+                'options' => [
                     'route' => '[/:lang]',
-                    'constraints' => array(
+                    'constraints' => [
                         'lang' => '[a-z]{2}-[a-z]{2}',
-                    ),
-                    'defaults' => array(
+                    ],
+                    'defaults' => [
                         '__NAMESPACE__' => 'LosI18n\Controller',
                         'controller' => 'Index',
                         'action' => 'index',
                         'lang' => 'pt-br',
-                    ),
-                ),
+                    ],
+                ],
                 'may_terminate' => true,
-            ),
-        ),
-    ),
-    'view_manager' => array(
-        'template_path_stack' => array(
+            ],
+        ],
+    ],
+    'view_manager' => [
+        'template_path_stack' => [
             'LosI18n' => __DIR__.'/../view',
-        ),
-    ),
-);
+        ],
+    ],
+];
