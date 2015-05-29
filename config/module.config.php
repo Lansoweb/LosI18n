@@ -51,7 +51,7 @@ return [
                         'options' => [
                             'route' => '[/:lang]',
                             'constraints' => [
-                                'lang' => '[a-z]{2}_[A-Z]{2}',
+                                'lang' => '[a-z]{2}(_[A-Z]{2})?',
                             ],
                             'defaults' => [
                                 '__NAMESPACE__' => 'LosI18n\Controller',
@@ -69,13 +69,13 @@ return [
                 'options' => [
                     'route' => '[/:lang]',
                     'constraints' => [
-                        'lang' => '[a-z]{2}-[a-z]{2}',
+                        'lang' => '[a-z]{2}(_[A-Z]{2})?',
                     ],
                     'defaults' => [
                         '__NAMESPACE__' => 'LosI18n\Controller',
                         'controller' => 'Index',
                         'action' => 'index',
-                        'lang' => 'pt-br',
+                        'lang' => 'pt_BR',
                     ],
                 ],
                 'may_terminate' => true,
