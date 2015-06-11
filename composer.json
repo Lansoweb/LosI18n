@@ -11,8 +11,8 @@
     "suggest": {
         "los/losbase": "los/losbase for some abstract classes to speed development ",
         "los/loslog": "los/loslog for logging",
-        "los/losui": "los/losui for styling your project with bootstrap3 and using jquery/fontawesome/moment/chosen"
-        "los/losi18n-data": "los/losi18n-data for language data",
+        "los/losui": "los/losui for styling your project with bootstrap3 and using jquery/fontawesome/moment/chosen",
+        "los/losi18n-data": "los/losi18n-data for language data"
     },        
     "authors" : [ 
         {
