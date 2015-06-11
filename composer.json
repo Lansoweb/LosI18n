@@ -1,6 +1,6 @@
 {
     "name" : "los/losi18n",
-    "description" : "I18N module for ZF2 applications providing country and language lists in all languages",
+    "description" : "I18N module for ZF2 applications providing route and country, region and language lists in all languages",
     "require" : {
         "php" : ">=5.5.0",
         "zendframework/zendframework" : ">=2.3.2,<3.0.0"
@@ -12,6 +12,7 @@
         "los/losbase": "los/losbase for some abstract classes to speed development ",
         "los/loslog": "los/loslog for logging",
         "los/losui": "los/losui for styling your project with bootstrap3 and using jquery/fontawesome/moment/chosen"
+        "los/losi18n-data": "los/losi18n-data for language data",
     },        
     "authors" : [ 
         {
