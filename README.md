@@ -73,6 +73,7 @@ vendor/los/losi18n-data/data/<language>/regions.json
 ## Usage
  
 ### Language list
+```php
 $languagesService = $sm->get('losi18n-countries');
 // All languages translated to pt_BR
 $languages = $countriesService->getAllLanguages('pt_BR');
@@ -80,17 +81,22 @@ $languages = $countriesService->getAllLanguages('pt_BR');
 $languages = $countriesService->getNativeLanguages();
 // Brazilian Portuguese in English
 $language = $countriesService->getLanguage('pt_BR', 'en);
+```
 
 ### Country list
+```php
 $countriesService = $sm->get('losi18n-countries');
 // All countries translated to English
 $countries = $countriesService->getAllCountries('en');
 // United States translated to Brazilian Portuguese
 $country = $countriesService->getCountry('US','pt_BR');
+```
 
 ### Region list
+```php
 $regionsService = $sm->get('losi18n-regions');
 $regions = $countriesService->getAllRegions('pt_BR');
+```
 
 ### Routes
 
