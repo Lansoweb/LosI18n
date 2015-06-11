@@ -127,6 +127,7 @@ final class BuilderService
             $attrs = $l->attributes();
             $key = $attrs->type->__toString();
             if (is_numeric($key)) {
+                $key = (int) $key;
                 $regions[$key] = $l->__toString();
             }
         }
@@ -255,7 +256,11 @@ final class BuilderService
 
         $regions = $this->getRegions($xml);
         if (!empty($parentCountries)) {
-            $regions = array_merge($parentRegions, $regions);
+            $vet = $parentRegions;
+            foreach ($regions as $key => $region) {
+                $vet[$key] = $region;
+            }
+            $regions = $vet;
         }
 
         $this->saveRegions($language, $regions);
