@@ -108,12 +108,30 @@ final class BuilderService
             $attrs = $l->attributes();
             $key = $attrs->type->__toString();
             if (is_numeric($key)) {
-                $key = (int) $key;
+                continue;
             }
             $countries[$key] = $l->__toString();
         }
 
         return $countries;
+    }
+
+    private function getRegions($xml)
+    {
+        if (!isset($xml->localeDisplayNames->territories->territory)) {
+            return [];
+        }
+        $vet = $xml->localeDisplayNames->territories->territory;
+        $regions = [];
+        foreach ($vet as $l) {
+            $attrs = $l->attributes();
+            $key = $attrs->type->__toString();
+            if (is_numeric($key)) {
+                $regions[$key] = $l->__toString();
+            }
+        }
+
+        return $regions;
     }
 
     private function saveLanguages($language, array $list)
@@ -178,6 +196,25 @@ final class BuilderService
         file_put_contents($dst.'/countries.'.$formatter->getExtension(), $formatter->format($list));
     }
 
+    private function saveRegions($language, array $list)
+    {
+        $dst = $this->destination."/$language";
+        if (!file_exists($dst)) {
+            mkdir($dst);
+        }
+        if ($this->formatter !== null) {
+            file_put_contents($dst.'/regions.'.$this->formatter->getExtension(), $this->formatter->format($list));
+
+            return;
+        }
+        $formatter = new PhpFormatter();
+        file_put_contents($dst.'/regions.'.$formatter->getExtension(), $formatter->format($list));
+        $formatter = new JsonFormatter();
+        file_put_contents($dst.'/regions.'.$formatter->getExtension(), $formatter->format($list));
+        $formatter = new CsvFormatter();
+        file_put_contents($dst.'/regions.'.$formatter->getExtension(), $formatter->format($list));
+    }
+
     private function buildForLang($language)
     {
         $xml = simplexml_load_file("{$this->source}/{$language}.xml");
@@ -209,6 +246,19 @@ final class BuilderService
         }
 
         $this->saveCountries($language, $countries);
+
+        $parentRegions = [];
+        //This language has a parent, load the parent and merge the arrays
+        if ($identityLanguage != $language) {
+            $parentRegions = $this->getRegions($parentXml);
+        }
+
+        $regions = $this->getRegions($xml);
+        if (!empty($parentCountries)) {
+            $regions = array_merge($parentRegions, $regions);
+        }
+
+        $this->saveRegions($language, $regions);
     }
 
     public function build()
