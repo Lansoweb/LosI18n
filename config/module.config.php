@@ -46,26 +46,6 @@ return [
     ],
     'router' => [
         'routes' => [
-            'zfcadmin' => [
-                'child_routes' => [
-                    'los-i18n' => [
-                        'type' => 'Segment',
-                        'options' => [
-                            'route' => '[/:lang]',
-                            'constraints' => [
-                                'lang' => '[a-z]{2}(_[A-Z]{2})?',
-                            ],
-                            'defaults' => [
-                                '__NAMESPACE__' => 'LosI18n\Controller',
-                                'controller' => 'Index',
-                                'action' => 'index',
-                                'lang' => 'pt_BR',
-                            ],
-                        ],
-                        'may_terminate' => true,
-                    ],
-                ],
-            ],
             'los-i18n' => [
                 'type' => 'Segment',
                 'options' => [
