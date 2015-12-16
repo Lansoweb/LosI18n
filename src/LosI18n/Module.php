@@ -8,12 +8,6 @@ use Zend\Console\Adapter\AdapterInterface as Console;
 
 class Module implements AutoloaderProviderInterface, ConfigProviderInterface, ConsoleUsageProviderInterface
 {
-    public function onBootstrap($e)
-    {
-        $sm = $e->getApplication()->getServiceManager();
-        $em = $sm->get('Doctrine\ORM\EntityManager');
-    }
-
     public function getConfig()
     {
         return include __DIR__.'/../../config/module.config.php';
