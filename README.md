@@ -25,7 +25,7 @@ For composer documentation, please refer to [getcomposer.org](http://getcomposer
      }
      ```
   3. Run `php composer.phar install`
-  4. Open `my/project/directory/config/application.config.php` and add `LosUi` to your `modules`
+  4. Open `my/project/directory/config/application.config.php` and add `LosI18n` to your `modules`
      
 ### Installation without composer
 
