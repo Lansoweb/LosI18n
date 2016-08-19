@@ -1,37 +1,22 @@
 {
-    "name" : "los/losi18n",
-    "description" : "I18N module for ZF2 applications providing route and country, region and language lists in all languages",
-    "require" : {
-        "php" : ">=5.5.0",
-        "zendframework/zendframework" : ">=2.3.2,<3.0.0"
-    },
-    "require-dev": {
-        "satooshi/php-coveralls": "dev-master"
-    },
-    "suggest": {
-        "los/losbase": "los/losbase for some abstract classes to speed development ",
-        "los/loslog": "los/loslog for logging",
-        "los/losui": "los/losui for styling your project with bootstrap3 and using jquery/fontawesome/moment/chosen",
-        "los/losi18n-data": "los/losi18n-data for language data"
-    },        
-    "authors" : [ 
-        {
-            "name" : "Leandro Silva",
-            "email" : "leandro@leandrosilva.info",
-            "homepage" : "http://leandrosilva.info"
-        } 
-    ],
-    "keywords" : [ "los", "i18n", "module", "zf2", "country", "language" ],
-    "autoload" : {
-        "psr-4" : {
-            "LosI18n\\" : "src/"
-        },
-        "psr-0" : {
-            "LosI18n\\" : "src/"
-        },
-        "classmap" : [ "./" ]
-    },
-    "license" : "BSD-3-Clause",
-    "type" : "library",
-    "homepage" : "http://github.com/Lansoweb/LosI18n"
+  "name" : "los/losi18n",
+  "description" : "I18N middleware providing route and country, region and language lists in all languages",
+  "require" : {
+    "php" : "^7.0",
+    "zendframework/zend-servicemanager" : "^3.0"
+  },
+  "license" : "MIT",
+  "keywords" : [ "los", "i18n", "country", "language" ],
+  "autoload" : {
+    "psr-4" : {
+      "LosI18n\\" : "src/"
+    }
+  },
+  "type" : "library",
+  "authors" : [ {
+    "name" : "Leandro Silva",
+    "email" : "leandro@leandrosilva.info",
+    "homepage" : "http://leandrosilva.info"
+  } ],
+  "homepage" : "http://github.com/Lansoweb/LosI18n"
 }

@@ -1,0 +1,7 @@
+<?php
+return [
+    'los_i18n' => [
+        'path' => 'vendor/los/losi18n-data/data',
+        'default_lang' => 'en',
+    ],
+];
