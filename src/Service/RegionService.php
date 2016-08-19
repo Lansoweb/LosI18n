@@ -3,38 +3,19 @@ namespace LosI18n\Service;
 
 final class RegionService
 {
-    private $translatedTo;
+    private $defaultLang;
+    private $path;
 
-    private $path = 'vendor/los/losi18n-data/data';
-
-    public function getTranslatedTo()
+    public function __construct($path, $defaultLang)
     {
-        return $this->translatedTo;
-    }
-
-    public function setTranslatedTo($translatedTo)
-    {
-        $this->translatedTo = (string) $translatedTo;
-
-        return $this;
-    }
-
-    public function getPath()
-    {
-        return $this->path;
-    }
-
-    public function setPath($path)
-    {
-        $this->path = (string) $path;
-
-        return $this;
+        $this->path = $path;
+        $this->defaultLang = $defaultLang;
     }
 
     public function getAllRegions($translatedTo = null)
     {
         if (null === $translatedTo) {
-            $translatedTo = $this->translatedTo;
+            $translatedTo = $this->defaultLang;
         }
         $fileName = $this->path.'/'.$translatedTo.'/regions.php';
         if (! file_exists($fileName)) {
@@ -47,7 +28,7 @@ final class RegionService
     public function getRegion($region, $translatedTo = null)
     {
         if (null === $translatedTo) {
-            $translatedTo = $this->translatedTo;
+            $translatedTo = $this->defaultLang;
         }
         $fileName = $this->path.'/'.$translatedTo.'/regions.php';
         if (! file_exists($fileName)) {
