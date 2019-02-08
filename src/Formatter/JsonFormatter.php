@@ -3,12 +3,12 @@ namespace LosI18n\Formatter;
 
 class JsonFormatter extends AbstractFormatter
 {
-    public function format(array $data)
+    public function format(array $data): string
     {
-        return json_encode($data);
+        return \json_encode($data);
     }
 
-    public function getExtension()
+    public function getExtension(): string
     {
         return 'json';
     }

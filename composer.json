@@ -2,8 +2,12 @@
   "name" : "los/losi18n",
   "description" : "I18N middleware providing route and country, region and language lists in all languages",
   "require" : {
-    "php" : "^7.0",
+    "php" : "^7.1",
+    "ext-json": "*",
     "container-interop/container-interop" : "^1.1"
+  },
+  "suggest": {
+    "los/losi18n-data": "Data files for LosI18n."
   },
   "license" : "MIT",
   "keywords" : [ "los", "i18n", "country", "language" ],
@@ -18,5 +22,19 @@
     "email" : "leandro@leandrosilva.info",
     "homepage" : "http://leandrosilva.info"
   } ],
-  "homepage" : "http://github.com/Lansoweb/LosI18n"
+  "homepage" : "http://github.com/Lansoweb/LosI18n",
+  "require-dev": {
+    "phpstan/phpstan": "^0.6.0",
+    "squizlabs/php_codesniffer": "^2.7",
+    "zendframework/zend-coding-standard": "^1.0"
+  },
+  "scripts": {
+    "check": [
+      "@cs-check",
+      "@phpstan"
+    ],
+    "phpstan": "php -d memory_limit=-1 vendor/bin/phpstan analyse -l 4 src",
+    "cs-check": "phpcs",
+    "cs-fix": "phpcbf"
+  }
 }

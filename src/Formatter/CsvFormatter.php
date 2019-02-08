@@ -3,27 +3,27 @@ namespace LosI18n\Formatter;
 
 class CsvFormatter extends AbstractFormatter
 {
-    public function format(array $data)
+    public function format(array $data): string
     {
-        $outstream = fopen('php://temp', 'r+');
-        fputcsv($outstream, [
+        $outstream = \fopen('php://temp', 'r+');
+        \fputcsv($outstream, [
             'iso',
             'name',
         ]);
         foreach ($data as $iso => $name) {
-            fputcsv($outstream, [
+            \fputcsv($outstream, [
                 $iso,
                 $name,
             ]);
         }
-        rewind($outstream);
-        $csv = stream_get_contents($outstream);
-        fclose($outstream);
+        \rewind($outstream);
+        $csv = \stream_get_contents($outstream);
+        \fclose($outstream);
 
         return $csv;
     }
 
-    public function getExtension()
+    public function getExtension(): string
     {
         return 'csv';
     }
