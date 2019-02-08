@@ -4,7 +4,7 @@
 This middleware provides list of Languages, Countries and Regions translated to all languages.
 
 ## Requirements
-PHP 7.0+ and any container-interopt compatible project.
+PHP 7.1+ and any container-interopt compatible project.
 
 ## Instalation
 ```
@@ -44,7 +44,7 @@ $language = $countriesService->getLanguage('pt_BR', 'en);
 ### Country list
 ```php
 $countriesService = $sm->get('losi18n-countries');
-// All officialy assigned countries translated to English
+// All officially assigned countries translated to English
 $countries = $countriesService->getAllCountries('en');
 // All countries translated to English
 $countries = $countriesService->getAllCountries('en', false);
