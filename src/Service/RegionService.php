@@ -20,7 +20,7 @@ final class RegionService
             $translatedTo = $this->defaultLang;
         }
         $fileName = $this->path.'/'.$translatedTo.'/regions.php';
-        if (! \file_exists($fileName)) {
+        if (! file_exists($fileName)) {
             throw new \InvalidArgumentException("Language $translatedTo not found.");
         }
 
@@ -33,15 +33,15 @@ final class RegionService
             $translatedTo = $this->defaultLang;
         }
         $fileName = $this->path.'/'.$translatedTo.'/regions.php';
-        if (! \file_exists($fileName)) {
+        if (! file_exists($fileName)) {
             throw new \InvalidArgumentException("Language $translatedTo not found.");
         }
 
         $list = include $fileName;
-        if (! \is_array($list)) {
+        if (! is_array($list)) {
             throw new \InvalidArgumentException("Language $translatedTo not found.");
         }
-        if (! \array_key_exists($region, $list)) {
+        if (! array_key_exists($region, $list)) {
             throw new \InvalidArgumentException("Region $region not found for $translatedTo.");
         }
 
