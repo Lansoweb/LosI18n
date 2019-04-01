@@ -3,7 +3,7 @@ namespace LosI18n\Formatter;
 
 class PhpFormatter extends AbstractFormatter
 {
-    public function format(array $data)
+    public function format(array $data): string
     {
         $str = sprintf("<?php\nreturn %s;%s", var_export($data, true), PHP_EOL);
         $str = str_replace('array (', '[', $str);
@@ -13,7 +13,7 @@ class PhpFormatter extends AbstractFormatter
         return $str;
     }
 
-    public function getExtension()
+    public function getExtension(): string
     {
         return 'php';
     }
