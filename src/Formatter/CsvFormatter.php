@@ -1,7 +1,16 @@
 <?php
+
+declare(strict_types=1);
+
 namespace LosI18n\Formatter;
 
-class CsvFormatter extends AbstractFormatter
+use function fclose;
+use function fopen;
+use function fputcsv;
+use function rewind;
+use function stream_get_contents;
+
+class CsvFormatter implements Formatter
 {
     public function format(array $data): string
     {
@@ -16,6 +25,7 @@ class CsvFormatter extends AbstractFormatter
                 $name,
             ]);
         }
+
         rewind($outstream);
         $csv = stream_get_contents($outstream);
         fclose($outstream);

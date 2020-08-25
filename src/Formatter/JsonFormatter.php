@@ -1,7 +1,12 @@
 <?php
+
+declare(strict_types=1);
+
 namespace LosI18n\Formatter;
 
-class JsonFormatter extends AbstractFormatter
+use function json_encode;
+
+class JsonFormatter implements Formatter
 {
     public function format(array $data): string
     {
