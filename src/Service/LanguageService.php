@@ -52,9 +52,9 @@ final class LanguageService
     /**
      * @param string $language
      * @param string $translatedTo
-     * @return array
+     * @return string
      */
-    public function getLanguage(string $language, string $translatedTo = ''): array
+    public function getLanguage(string $language, string $translatedTo = ''): string
     {
         if (null === $translatedTo) {
             $translatedTo = $this->defaultLang;
