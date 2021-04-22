@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace LosI18n\Service;
 
 final class LanguageService
@@ -6,15 +8,24 @@ final class LanguageService
     private $defaultLang;
     private $path;
 
-    public function __construct($path, $defaultLang)
+    /**
+     * LanguageService constructor.
+     * @param string $path
+     * @param string $defaultLang
+     */
+    public function __construct(string $path, string $defaultLang)
     {
         $this->path = $path;
         $this->defaultLang = $defaultLang;
     }
 
-    public function getAllLanguages($translatedTo = null)
+    /**
+     * @param string $translatedTo
+     * @return array
+     */
+    public function getAllLanguages(string $translatedTo = ''): array
     {
-        if (null === $translatedTo) {
+        if ('' === $translatedTo) {
             $translatedTo = $this->defaultLang;
         }
         $fileName = $this->path.'/'.$translatedTo.'/languages.php';
@@ -25,7 +36,10 @@ final class LanguageService
         return include $fileName;
     }
 
-    public function getNativeLanguages()
+    /**
+     * @return array
+     */
+    public function getNativeLanguages(): array
     {
         $fileName = $this->path.'/natives/languages.php';
         if (! file_exists($fileName)) {
@@ -35,7 +49,12 @@ final class LanguageService
         return include $fileName;
     }
 
-    public function getLanguage($language, $translatedTo = null)
+    /**
+     * @param string $language
+     * @param string $translatedTo
+     * @return array
+     */
+    public function getLanguage(string $language, string $translatedTo = ''): array
     {
         if (null === $translatedTo) {
             $translatedTo = $this->defaultLang;
@@ -46,10 +65,10 @@ final class LanguageService
         }
 
         $list = include $fileName;
-        if (!is_array($list)) {
+        if (! is_array($list)) {
             throw new \InvalidArgumentException("Language $translatedTo not found.");
         }
-        if (!array_key_exists($language, $list)) {
+        if (! array_key_exists($language, $list)) {
             throw new \InvalidArgumentException("Language $language not found for $translatedTo.");
         }
 
