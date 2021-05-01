@@ -1,19 +1,17 @@
 <?php
+
+declare(strict_types=1);
+
 namespace LosI18n\Service;
 
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 
 class CountryServiceFactory
 {
-
-    /**
-     * {@inheritDoc}
-     * @see \Zend\ServiceManager\Factory\FactoryInterface::__invoke()
-     */
-    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
+    public function __invoke(ContainerInterface $container): CountryService
     {
-        $config = $container->has('config') ? $container->get('config') : [];
-        $path = $config['los_i18n']['path'] ?? 'vendor/los/losi18n-data/data';
+        $config      = $container->get('config');
+        $path        = $config['los_i18n']['path'] ?? 'vendor/los/losi18n-data/data';
         $defaultLang = $config['los_i18n']['default_lang'] ?? 'en';
 
         return new CountryService($path, $defaultLang);

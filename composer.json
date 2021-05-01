@@ -1,40 +1,56 @@
 {
-  "name" : "los/losi18n",
-  "description" : "I18N middleware providing route and country, region and language lists in all languages",
-  "require" : {
-    "php" : "^7.1",
+  "name": "los/losi18n",
+  "type": "library",
+  "description": "I18N middleware providing route and country, region and language lists in all languages",
+  "keywords": [
+    "los",
+    "i18n",
+    "country",
+    "language"
+  ],
+  "homepage": "http://github.com/Lansoweb/LosI18n",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Leandro Silva",
+      "email": "leandro@leandrosilva.info",
+      "homepage": "http://leandrosilva.info"
+    }
+  ],
+  "require": {
+    "php": "^7.4 || ^8.0",
     "ext-json": "*",
-    "container-interop/container-interop" : "^1.1"
+    "psr/container": "^1.1"
+  },
+  "require-dev": {
+    "doctrine/coding-standard": "^9.0",
+    "ergebnis/composer-normalize": "^2.13",
+    "phpstan/phpstan": "^0.12.85",
+    "squizlabs/php_codesniffer": "^3.6",
+    "vimeo/psalm": "^4.7"
   },
   "suggest": {
     "los/losi18n-data": "Data files for LosI18n."
   },
-  "license" : "MIT",
-  "keywords" : [ "los", "i18n", "country", "language" ],
-  "autoload" : {
-    "psr-4" : {
-      "LosI18n\\" : "src/"
+  "extra": {
+    "zf": {
+      "config-provider": "LosI18n\\ConfigProvider"
     }
   },
-  "type" : "library",
-  "authors" : [ {
-    "name" : "Leandro Silva",
-    "email" : "leandro@leandrosilva.info",
-    "homepage" : "http://leandrosilva.info"
-  } ],
-  "homepage" : "http://github.com/Lansoweb/LosI18n",
-  "require-dev": {
-    "phpstan/phpstan": "^0.6.0",
-    "squizlabs/php_codesniffer": "^2.7",
-    "zendframework/zend-coding-standard": "^1.0"
+  "autoload": {
+    "psr-4": {
+      "LosI18n\\": "src/"
+    }
   },
   "scripts": {
     "check": [
       "@cs-check",
-      "@phpstan"
+      "@phpstan",
+      "@psalm"
     ],
-    "phpstan": "php -d memory_limit=-1 vendor/bin/phpstan analyse -l 4 src",
-    "cs-check": "phpcs",
-    "cs-fix": "phpcbf"
+    "cs-check": "phpcs -s",
+    "cs-fix": "phpcbf",
+    "phpstan": "phpstan analyse",
+    "psalm": "psalm"
   }
 }

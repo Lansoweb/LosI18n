@@ -1,9 +1,25 @@
 <?php
+
+declare(strict_types=1);
+
 namespace LosI18n;
 
 class ConfigProvider
 {
-    public function getDependenciesConfig()
+    /**
+     * @return array<string,array<string,array<string,string>>>
+     */
+    public function __invoke(): array
+    {
+        return [
+            'dependencies' => $this->getDependencies(),
+        ];
+    }
+
+    /**
+     * @return array<string,array<string,string>>
+     */
+    public function getDependencies(): array
     {
         return [
             'factories' => [
