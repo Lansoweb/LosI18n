@@ -4,9 +4,9 @@
 This middleware provides list of Languages, Countries and Regions translated to all languages.
 
 ## Requirements
-PHP 7.1+ and any container-interopt compatible project.
+PHP 7.4 | 8.0 and any container-interopt compatible project.
 
-## Instalation
+## Installation
 ```
 composer require los/losi18n
 ```

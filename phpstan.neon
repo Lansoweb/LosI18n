@@ -1,0 +1,9 @@
+parameters:
+    level: max
+    paths:
+        - src
+        - config
+    reportUnmatchedIgnoredErrors: false
+    checkMissingIterableValueType: false
+includes:
+    - vendor/phpstan/phpstan/conf/bleedingEdge.neon

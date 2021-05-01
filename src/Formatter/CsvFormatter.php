@@ -1,24 +1,49 @@
 <?php
+
+declare(strict_types=1);
+
 namespace LosI18n\Formatter;
 
-class CsvFormatter extends AbstractFormatter
+use RuntimeException;
+
+use function fclose;
+use function fopen;
+use function fputcsv;
+use function rewind;
+use function stream_get_contents;
+
+class CsvFormatter implements Formatter
 {
+    /**
+     * @param array<string|int,string> $data
+     */
     public function format(array $data): string
     {
-        $outstream = fopen('php://temp', 'r+');
-        fputcsv($outstream, [
+        $outStream = fopen('php://temp', 'r+');
+
+        if ($outStream === false) {
+            throw new RuntimeException('Unable to open temp resource');
+        }
+
+        fputcsv($outStream, [
             'iso',
             'name',
         ]);
         foreach ($data as $iso => $name) {
-            fputcsv($outstream, [
+            fputcsv($outStream, [
                 $iso,
                 $name,
             ]);
         }
-        rewind($outstream);
-        $csv = stream_get_contents($outstream);
-        fclose($outstream);
+
+        rewind($outStream);
+        $csv = stream_get_contents($outStream);
+
+        if ($csv === false) {
+            throw new RuntimeException('Unable to read temp resource');
+        }
+
+        fclose($outStream);
 
         return $csv;
     }
