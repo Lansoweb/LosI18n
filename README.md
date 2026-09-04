@@ -1,5 +1,11 @@
 # LosI18n
 
+> [!WARNING]
+> ## Archived
+> This internationalization middleware is no longer maintained and will receive
+> no further releases. Use the maintained localization facilities and locale
+> data provided by your current framework for new applications.
+
 ## Introduction
 This middleware provides list of Languages, Countries and Regions translated to all languages.
 
